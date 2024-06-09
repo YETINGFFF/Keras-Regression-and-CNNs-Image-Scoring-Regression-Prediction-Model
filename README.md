@@ -1,10 +1,10 @@
 # Requirements
 - python==3.7.4
-- Pillow
-- Time
-- Urllib
-- TensorFlow
-- Tensorboard
-- Keras
-- Numpy
+- Pillow==6.2.0
+- sympy==1.4  
+- Urllib==1.24.2
+- TensorFlow==2.0.0
+- Tensorboard==2.0.2
+- Keras==2.3.1
+- Numpy==1.16.5
 - Matplotlib

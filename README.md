@@ -1,0 +1,10 @@
+# Requirements
+- python==3.7.4
+- Pillow
+- Time
+- Urllib
+- TensorFlow
+- Tensorboard
+- Keras
+- Numpy
+- Matplotlib

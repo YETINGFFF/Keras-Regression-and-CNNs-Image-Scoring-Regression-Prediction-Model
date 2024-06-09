@@ -39,9 +39,9 @@ from keras.utils import plot_model
 
 EPOCHS_NUM=200
 # construct the path to the input .txt file that contains information
-# on each house in the dataset and then load the dataset
+# on each image in the dataset and then load the dataset
 
-print("[INFO] loading house attributes...")
+print("[INFO] loading image attributes...")
 inputPath =  "scores.csv"
 df = pd.read_csv(inputPath, sep=",")
 print(df.head())
@@ -79,15 +79,15 @@ print(score.shape)
 
 
 
-maxPrice = trainY.max()
-print("maxPrice={}".format(maxPrice))
+maxScore = trainY.max()
+print("maxScore={}".format(maxScore))
 input("press any key")
 
 trainY=trainY.values
-trainY = trainY / maxPrice
+trainY = trainY / maxScore
 
 testY=testY.values
-testY = testY / maxPrice
+testY = testY / maxScore
 
 
 
@@ -178,7 +178,7 @@ my_predict_out=model.predict(my_out_data)
 
 
 
-pd.DataFrame(my_predict_out*maxPrice).to_csv("my_predict.csv")
+pd.DataFrame(my_predict_out*maxScore).to_csv("my_predict.csv")
 
 
 
@@ -186,11 +186,11 @@ pd.DataFrame(my_predict_out*maxPrice).to_csv("my_predict.csv")
 
 
 
-model.save("housePrice.keras2")
-print("[INFO] model saved to housePrice.keras2")
+model.save("Score.keras2")
+print("[INFO] model saved to Score.keras2")
 
 # make predictions on the testing data
-print("[INFO] predicting house prices...")
+print("[INFO] predicting Score...")
 preds = model.predict(testX)
 
 from sklearn.metrics import mean_absolute_error
@@ -217,9 +217,9 @@ print("[INFO] avg. house price: {}, std house price: {}".format(
 print("[INFO] mean: {:.2f}%, std: {:.2f}%".format(mean, std))
 
 
-#readjust house prices
-testY=testY*maxPrice
-preds=preds*maxPrice
+#readjust image Scores
+testY=testY*maxScore
+preds=preds*maxScore
 
 
 validationLoss=(history.history['val_loss'])
@@ -248,15 +248,15 @@ plt.show()
 
 
 #plot curves (Actual vs Predicted)
-plt.plot  ( testY ,label="Actual price")
-plt.plot  ( preds, label="Predicted price" )
-plt.title ('Security scores')
+plt.plot  ( testY ,label="Actual Score")
+plt.plot  ( preds, label="Predicted Score" )
+plt.title ('image Score')
 plt.xlabel("Point #")
-plt.ylabel("Price")
+plt.ylabel("Score")
 plt.legend(loc="upper right")
-plt.savefig("scores.png")
+plt.savefig("Score.png")
 plt.show()
-print("[INFO] predicted vs actual price saved to scores.png")
+print("[INFO] predicted vs actual price saved to Score.png")
 
 
 
